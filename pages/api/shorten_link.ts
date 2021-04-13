@@ -23,7 +23,9 @@ export default async (req: VercelRequest, res: VercelResponse) => {
       .insertOne({ link: req.body.link });
     return res
       .status(201)
-      .json({ short_link: `http://localhost:3000/r/${entry.insertedId}` });
+      .json({
+        short_link: `${process.env.NEXT_PUBLIC_VERCEL_URL}/r/${entry.insertedId}`,
+      });
   }
 
   res
